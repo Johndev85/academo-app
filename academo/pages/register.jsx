@@ -1,4 +1,4 @@
-import styles from "../styles/login.module.scss"
+import styles from "../styles/register.module.scss"
 import Link from "next/link"
 
 const Login = () => {
@@ -6,26 +6,25 @@ const Login = () => {
         <article className={styles.container}>
             <header className={styles.container__headerLogin}>
                 <h1>academo</h1>
-                <h2>Inicia sesión</h2>
+                <h2>Nuevo Registro</h2>
             </header>
             <form
                 action=""
                 method="get"
                 className={styles.container__formLogin}
             >
-                <label htmlFor="">Usuario</label>
+                <label placeholder="Digite un usuario">Usuario</label>
                 <input type="text" />
-                <label htmlFor="">Contraseña</label>
+                <label placeholder="Digite una contraseña">Contraseña</label>
                 <input type="text" />
-                <span>¿Olvidaste la contraseña?</span>
                 <div className={styles.container__formLogin__button}>
-                    <button>Ingresar</button>
+                    <button>Crear Usuario</button>
                 </div>
             </form>
             <footer className={styles.container__footerLogin}>
-                <span>¿No tienes cuenta?</span>
-                <Link href="/register">
-                    <a>Regístrate</a>
+                <span>¿Ya tienes cuenta?</span>
+                <Link href="/login">
+                    <a>Inicia Sesión</a>
                 </Link>
             </footer>
         </article>
