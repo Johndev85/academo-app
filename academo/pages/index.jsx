@@ -1,7 +1,7 @@
 import Head from "next/head"
 import styles from "../styles/home.module.scss"
 
-import App from "../pages/app"
+import App from "./app"
 
 export default function Home() {
     return (
