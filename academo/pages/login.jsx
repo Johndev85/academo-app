@@ -6,7 +6,6 @@ import cookie from "js-cookie"
 import Router from "next/router"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { useState } from "react"
 
 const formSchema = Yup.object().shape({
     username: Yup.string()
@@ -18,8 +17,6 @@ const formSchema = Yup.object().shape({
 })
 
 const Login = () => {
-    const [loginError, setLoginError] = useState("")
-
     function handleSubmit(form) {
         fetch("./api/auth", {
             method: "POST",
@@ -34,8 +31,7 @@ const Login = () => {
             .then((r) => r.json())
             .then((data) => {
                 if (data && data.error) {
-                    setLoginError(data.message)
-                    toast.error(loginError, {
+                    toast.error(data.message, {
                         autoClose: 2000,
                     })
                 }
@@ -55,7 +51,7 @@ const Login = () => {
     return (
         <article className={styles.container}>
             <header className={styles.container__headerLogin}>
-                <h1>academo</h1>
+                <h1>Academo</h1>
                 <h2>Inicia sesión</h2>
             </header>
             <Formik
@@ -80,7 +76,7 @@ const Login = () => {
                     <ErrorMessage
                         name="username"
                         component="span"
-                        className={styles.register__form__messageError}
+                        className={styles.container__formLogin__messageError}
                     />
 
                     <label htmlFor="">Contraseña</label>
@@ -94,7 +90,7 @@ const Login = () => {
                     <ErrorMessage
                         name="password"
                         component="span"
-                        className={styles.register__form__messageError}
+                        className={styles.container__formLogin__messageError}
                     />
                     <span>¿Olvidaste la contraseña?</span>
                     <div className={styles.container__formLogin__button}>

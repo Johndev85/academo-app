@@ -4,11 +4,11 @@ import cookie from "js-cookie"
 const Header = ({ data, revalidate }) => {
     return (
         <header className={styles.header}>
-            <h1>academo</h1>
+            <h1>Academo</h1>
             <nav className={styles.header__user}>
                 <ul>
                     <li>
-                        <p>{data.username}</p>
+                        <h4>{data.username}</h4>
                     </li>
                 </ul>
                 <button

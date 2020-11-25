@@ -16,14 +16,14 @@ const App = () => {
                     />
                     <section className={styles.container__video__comments}>
                         <h2>Comentarios</h2>
-                        <p>carga de comentarios</p>
-                        <p>carga de comentarios</p>
                     </section>
                 </section>
                 <form className={styles.container__formComments}>
-                    <label>Comentarios</label>
+                    <label>Comentarios:</label>
                     <input type="text" />
-                    <a href="#">Enviar</a>
+                    <div className={styles.container__formComments__btn}>
+                        <button href="#">Enviar</button>
+                    </div>
                 </form>
             </article>
 

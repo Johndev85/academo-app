@@ -54,8 +54,8 @@ const Register = () => {
 
     return (
         <article className={styles.container}>
-            <header className={styles.container__headerLogin}>
-                <h1>academo</h1>
+            <header className={styles.container__headerRegister}>
+                <h1>Academo</h1>
                 <h2>Nuevo Registro</h2>
             </header>
             <Formik
@@ -69,7 +69,7 @@ const Register = () => {
                 }}
             >
                 <Form className={styles.container__formLogin}>
-                    <label>Usuario</label>
+                    <label>Nuevo Usuario</label>
                     <Field
                         type="text"
                         name="username"
@@ -80,7 +80,7 @@ const Register = () => {
                     <ErrorMessage
                         name="username"
                         component="span"
-                        className={styles.register__form__messageError}
+                        className={styles.container__formLogin__messageError}
                     />
                     <label>Contraseña</label>
                     <Field
@@ -93,7 +93,7 @@ const Register = () => {
                     <ErrorMessage
                         name="password"
                         component="span"
-                        className={styles.register__form__messageError}
+                        className={styles.container__formLogin__messageError}
                     />
                     <div className={styles.container__formLogin__button}>
                         <button>Crear Usuario</button>
