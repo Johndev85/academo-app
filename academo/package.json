@@ -8,10 +8,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "assert": "2.0.0",
+    "bcrypt": "5.0.0",
+    "dotenv": "8.2.0",
+    "formik": "2.2.5",
+    "js-cookie": "2.2.1",
+    "jsonwebtoken": "8.5.1",
+    "mongodb": "3.6.3",
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-player": "2.7.0"
+    "react-player": "2.7.0",
+    "react-toastify": "6.1.0",
+    "uuid": "8.3.1",
+    "yup": "0.31.0"
   },
   "devDependencies": {
     "sass": "^1.29.0"
