@@ -5,18 +5,21 @@ import Login from "../pages/login"
 import fetch from "isomorphic-unfetch"
 import useSWR from "swr"
 import App from "./app"
-import Router from "next/router"
-import { useState } from "react"
+import Loader from "../components/Loader"
 
 export default function Home() {
-    // const [loggedIn, setLoggedIn] = useState("")
     let loggedIn
     const { data, revalidate } = useSWR("/api/me", async function (args) {
         const res = await fetch(args)
         return res.json()
     })
     try {
-        if (!data) return <h1>Loading...</h1>
+        if (!data)
+            return (
+                <div className={styles.loader}>
+                    <Loader />
+                </div>
+            )
         loggedIn = false
         if (data.username) {
             loggedIn = true
@@ -29,7 +32,7 @@ export default function Home() {
             {loggedIn && (
                 <div className={styles.container}>
                     <Head>
-                        <title>Academo</title>
+                        <title>Academo - Home</title>
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
                     <main className={styles.main}>

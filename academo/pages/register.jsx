@@ -1,8 +1,8 @@
+import Head from "next/head"
 import styles from "../styles/register.module.scss"
 import Link from "next/link"
 import * as Yup from "yup"
 import { Formik, Field, Form, ErrorMessage } from "formik"
-import { useState } from "react"
 import cookie from "js-cookie"
 import Router from "next/router"
 import { ToastContainer, toast } from "react-toastify"
@@ -18,8 +18,6 @@ const formSchema = Yup.object().shape({
 })
 
 const Register = () => {
-    const [registerError, setRegisterError] = useState("")
-
     function handleSubmit(form) {
         fetch("./api/users", {
             method: "POST",
@@ -34,8 +32,7 @@ const Register = () => {
             .then((r) => r.json())
             .then((data) => {
                 if (data && data.error) {
-                    setRegisterError(data.message)
-                    toast.error(registerError, {
+                    toast.error(data.message, {
                         autoClose: 2000,
                     })
                 }
@@ -53,62 +50,73 @@ const Register = () => {
     }
 
     return (
-        <article className={styles.container}>
-            <header className={styles.container__headerRegister}>
-                <h1>Academo</h1>
-                <h2>Nuevo Registro</h2>
-            </header>
-            <Formik
-                initialValues={{
-                    username: "",
-                    password: "",
-                }}
-                validationSchema={formSchema}
-                onSubmit={(values) => {
-                    handleSubmit(values)
-                }}
-            >
-                <Form className={styles.container__formLogin}>
-                    <label>Nuevo Usuario</label>
-                    <Field
-                        type="text"
-                        name="username"
-                        aria-label="name"
-                        placeholder="Nombre"
-                        className={styles.container__formLogin__input}
-                    />
-                    <ErrorMessage
-                        name="username"
-                        component="span"
-                        className={styles.container__formLogin__messageError}
-                    />
-                    <label>Contraseña</label>
-                    <Field
-                        type="password"
-                        name="password"
-                        aria-label="password"
-                        placeholder="Contraseña"
-                        className={styles.container__formLogin__input}
-                    />
-                    <ErrorMessage
-                        name="password"
-                        component="span"
-                        className={styles.container__formLogin__messageError}
-                    />
-                    <div className={styles.container__formLogin__button}>
-                        <button>Crear Usuario</button>
-                    </div>
-                    <ToastContainer />
-                </Form>
-            </Formik>
+        <>
+            <Head>
+                <title>Academo - Login</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-            <footer className={styles.container__footerLogin}>
-                <span>¿Ya tienes cuenta?</span>
-                <Link href="/login">
-                    <a>Inicia Sesión</a>
-                </Link>
-            </footer>
-        </article>
+            <article className={styles.container}>
+                <header className={styles.container__headerRegister}>
+                    <h1>Academo</h1>
+                    <h2>Nuevo Registro</h2>
+                </header>
+                <Formik
+                    initialValues={{
+                        username: "",
+                        password: "",
+                    }}
+                    validationSchema={formSchema}
+                    onSubmit={(values) => {
+                        handleSubmit(values)
+                    }}
+                >
+                    <Form className={styles.container__formLogin}>
+                        <label>Nuevo Usuario</label>
+                        <Field
+                            type="text"
+                            name="username"
+                            aria-label="name"
+                            placeholder="Nombre"
+                            className={styles.container__formLogin__input}
+                        />
+                        <ErrorMessage
+                            name="username"
+                            component="span"
+                            className={
+                                styles.container__formLogin__messageError
+                            }
+                        />
+                        <label>Contraseña</label>
+                        <Field
+                            type="password"
+                            name="password"
+                            aria-label="password"
+                            placeholder="Contraseña"
+                            className={styles.container__formLogin__input}
+                        />
+                        <ErrorMessage
+                            name="password"
+                            component="span"
+                            className={
+                                styles.container__formLogin__messageError
+                            }
+                        />
+                        <div className={styles.container__formLogin__button}>
+                            <button>Crear Usuario</button>
+                        </div>
+                        <ToastContainer />
+                    </Form>
+                </Formik>
+
+                <footer className={styles.container__footerLogin}>
+                    <span>¿Ya tienes cuenta?</span>
+                    <Link href="/login">
+                        <a>Inicia Sesión</a>
+                    </Link>
+                </footer>
+            </article>
+        </>
     )
 }
 
