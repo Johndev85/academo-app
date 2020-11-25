@@ -2,6 +2,11 @@ import styles from "../styles/login.module.scss"
 import Link from "next/link"
 import * as Yup from "yup"
 import { Formik, Field, Form, ErrorMessage } from "formik"
+import cookie from "js-cookie"
+import Router from "next/router"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { useState } from "react"
 
 const formSchema = Yup.object().shape({
     username: Yup.string()
@@ -13,6 +18,40 @@ const formSchema = Yup.object().shape({
 })
 
 const Login = () => {
+    const [loginError, setLoginError] = useState("")
+
+    function handleSubmit(form) {
+        fetch("./api/auth", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: form.username,
+                password: form.password,
+            }),
+        })
+            .then((r) => r.json())
+            .then((data) => {
+                if (data && data.error) {
+                    setLoginError(data.message)
+                    toast.error(loginError, {
+                        autoClose: 2000,
+                    })
+                }
+                if (data && data.token) {
+                    //asignamos la cookie
+                    cookie.set("token", data.token, { expires: 2 })
+                    toast.success("Sesión iniciada", {
+                        autoClose: 1500,
+                    })
+                    setTimeout(() => {
+                        Router.push("/")
+                    }, 2000)
+                }
+            })
+    }
+
     return (
         <article className={styles.container}>
             <header className={styles.container__headerLogin}>
@@ -26,7 +65,7 @@ const Login = () => {
                 }}
                 validationSchema={formSchema}
                 onSubmit={(values) => {
-                    console.log(values)
+                    handleSubmit(values)
                 }}
             >
                 <Form className={styles.container__formLogin}>
@@ -61,6 +100,7 @@ const Login = () => {
                     <div className={styles.container__formLogin__button}>
                         <button type="submit">Ingresar</button>
                     </div>
+                    <ToastContainer />
                 </Form>
             </Formik>
             <footer className={styles.container__footerLogin}>

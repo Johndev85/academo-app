@@ -1,4 +1,3 @@
-import Header from "../components/Header"
 import Footer from "../components/Footer"
 import ReactPlayer from "react-player/youtube"
 
@@ -7,8 +6,6 @@ import styles from "../styles/app.module.scss"
 const App = () => {
     return (
         <>
-            <Header />
-
             <article className={styles.container}>
                 <section className={styles.container__video}>
                     <h1>the heretic</h1>
