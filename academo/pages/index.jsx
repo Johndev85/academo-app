@@ -8,11 +8,11 @@ import App from "./app"
 import Loader from "../components/Loader"
 
 export default function Home() {
-    let loggedIn
     const { data, revalidate } = useSWR("/api/me", async function (args) {
         const res = await fetch(args)
         return res.json()
     })
+    let loggedIn
     try {
         if (!data)
             return (

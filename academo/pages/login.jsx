@@ -4,7 +4,7 @@ import Link from "next/link"
 import * as Yup from "yup"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import cookie from "js-cookie"
-import Router from "next/router"
+import { useRouter } from "next/router"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -18,6 +18,7 @@ const formSchema = Yup.object().shape({
 })
 
 const Login = () => {
+    const router = useRouter()
     function handleSubmit(form) {
         fetch("./api/auth", {
             method: "POST",
@@ -43,8 +44,8 @@ const Login = () => {
                         autoClose: 1500,
                     })
                     setTimeout(() => {
-                        Router.push("/")
-                    }, 1700)
+                        router.push("/")
+                    }, 2000)
                 }
             })
     }

@@ -21,10 +21,9 @@ export default (req, res) => {
             assert.strictEqual(err, null)
             console.log("Conectado a MongoDB =>")
             const db = client.db(dbName)
-            findComments(db)
-            res.statusCode = 200
-            res.setHeader("Content-Type", "application/json")
-            res.end(JSON.stringify({ name: "John Doe" }))
+            const query = findComments(db)
+
+            res.end(`comments: ${query}`)
         })
     } else {
         res.statusCode = 200
