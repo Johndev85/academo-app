@@ -12,7 +12,7 @@
 ## 🎯 Objective
 
 -   "Academo" is a web application that allows:
-    -   User registration and login.
+    -   User registration and login - (jwt - cookie).
     -   Database storage.
     -   API request.
     -   Visualization of a video in its interface
@@ -34,7 +34,8 @@ https://github.com/Johndev85/academo-app.git
 2. Go to project's folder
 
 ```bash
-cd academo-app
+cd academo-app/academo
+
 ```
 
 3. Install the dependencies
