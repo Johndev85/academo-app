@@ -1,10 +1,11 @@
 # Academo App
 
-![]()
+![](https://i.imgur.com/HzWfWkb.png)
+![](https://i.imgur.com/v44RTtN.png)
 
 **API Deploy:**
 
-### [https://pictures-viewer.herokuapp.com/](https://pictures-viewer.herokuapp.com/)
+### [https://academo-app.vercel.app/](https://academo-app.vercel.app//)
 
 ---
 
